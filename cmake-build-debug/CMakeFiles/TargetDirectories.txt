@@ -1,0 +1,3 @@
+/home/nivtal9/CLionProjects/solver-a/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/nivtal9/CLionProjects/solver-a/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/nivtal9/CLionProjects/solver-a/cmake-build-debug/CMakeFiles/solver-a.dir
