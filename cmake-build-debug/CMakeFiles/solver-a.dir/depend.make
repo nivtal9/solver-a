@@ -4,6 +4,10 @@
 CMakeFiles/solver-a.dir/Demo.cpp.o: ../Demo.cpp
 CMakeFiles/solver-a.dir/Demo.cpp.o: ../solver.hpp
 
+CMakeFiles/solver-a.dir/Test.cpp.o: ../Test.cpp
+CMakeFiles/solver-a.dir/Test.cpp.o: ../doctest.h
+CMakeFiles/solver-a.dir/Test.cpp.o: ../solver.hpp
+
 CMakeFiles/solver-a.dir/TestCounter.cpp.o: ../TestCounter.cpp
 CMakeFiles/solver-a.dir/TestCounter.cpp.o: ../doctest.h
 

@@ -11,16 +11,31 @@
 namespace solver {
     class RealVariable {
     private:
-        double num;
+        double a;
+        double b;
+        double c;
     public:
-        RealVariable(double num){
-            (*this).num=num;
+        double ans;
+        RealVariable(double a,double b, double c){
+            this->a=a;
+            this->b=b;
+            this->c=c;
         }
         RealVariable(){
-            (*this).num=0;
+            (*this).a=0;
+            (*this).b=1;
+            (*this).c=0;
         }
-
-        friend RealVariable& operator*(RealVariable &RV1, RealVariable &RV2);
+        double get_a() const{
+            return a;
+        }
+        double get_b() const{
+            return b;
+        }
+        double get_c() const{
+            return c;
+        }
+        friend RealVariable operator*(RealVariable &RV1, RealVariable &RV2);
         friend RealVariable& operator*(double DV1, RealVariable &RV2);
         friend RealVariable& operator*(RealVariable &RV1, double DV2);
 
@@ -97,6 +112,7 @@ namespace solver {
         friend ComplexVariable &operator+(std::complex<double> CDV1, ComplexVariable &CV2);
         friend ComplexVariable &operator+(ComplexVariable &CV1, std::complex<double> CDV2);
     };
+
     double solve(solver::RealVariable& RV);
     std::complex<double> solve(solver::ComplexVariable& CV);
 }
