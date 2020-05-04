@@ -5,19 +5,19 @@
 #include "solver.hpp"
 #include <cmath>
 #include <langinfo.h>
-
-solver::RealVariable solver::operator*(solver::RealVariable &RV1, solver::RealVariable &RV2) {
+#include "math.h"
+solver::RealVariable& solver::operator*(solver::RealVariable &RV1, solver::RealVariable &RV2) {
    // RV1.a =RV1.a*RV2.a;
    // RV1.b =RV1.b*RV2.b;
    // RV1.c=RV1.c+RV2.c;
    // return RV1;
     RealVariable& x=  *new RealVariable(RV1.a * RV2.a, RV1.b * RV2.b, RV1.c + RV2.c);
     return x;//wrong
-   // (2+3x^2)+2x
+
 }
 
 solver::RealVariable &solver::operator*(double DV1, solver::RealVariable &RV2) {
-    RealVariable &x=  *new RealVariable(DV1*RV2.a, DV1*RV2.b, DV1*RV2.c);
+    RealVariable &x=  *new RealVariable(DV1*RV2.a , DV1*RV2.b, DV1*RV2.c);
    // RV2.a=DV1*RV2.a;
   //  RV2.b=DV1*RV2.b;
   //  RV2.c=DV1*RV2.c;
@@ -140,11 +140,6 @@ solver::RealVariable &solver::operator^(solver::RealVariable &RV1, double DV2) {
         RV3.c=RV3.b;
         RV3.b=0;
     }
-
-
-
-
-
     return RV3;
 }
 
@@ -176,47 +171,69 @@ solver::RealVariable &solver::operator-(solver::RealVariable &RV1, double DV2) {
 
 
 
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 
 
 
 
 
-
-solver::ComplexVariable solver::operator*(solver::ComplexVariable &CV1, solver::ComplexVariable &CV2) {
-    return CV1;
+solver::ComplexVariable &solver::operator*(solver::ComplexVariable &CV1, solver::ComplexVariable &CV2) {
+    ComplexVariable &x=*new ComplexVariable(CV1.real*CV2.real , CV1.imag*CV2.imag);
+    return x;
 }
-
+////////not neded?
 /*solver::ComplexVariable &solver::operator*(std::complex<double> CDV1, std::complex<double> CDV2) {
     return (ComplexVariable &) CDV1;
 }*/
 
 solver::ComplexVariable &solver::operator*(double DV1, solver::ComplexVariable &CV2) {
-
-    return CV2;
+    ComplexVariable &x=*new ComplexVariable(DV1*CV2.real , DV1*CV2.imag);
+    return x;
 }
 
 solver::ComplexVariable &solver::operator*(solver::ComplexVariable &CV1, double DV2) {
-    return CV1;
+    ComplexVariable &x=*new ComplexVariable(DV2*CV1.real , DV2*CV1.imag);
+return x;
 }
 
 solver::ComplexVariable &solver::operator*(std::complex<double> CDV1, solver::ComplexVariable &CV2) {
-    return CV2;
+    ComplexVariable &x=*new ComplexVariable(CDV1.real()*CV2.real , CDV1.imag()*CV2.imag);
+    return x;
 }
 
 solver::ComplexVariable &solver::operator*(solver::ComplexVariable &CV1, std::complex<double> CDV2) {
-    return CV1;
+    ComplexVariable &x=*new ComplexVariable(CDV2.real()*CV1.real , CDV2.imag()*CV1.imag);
+    return x;
 }
 
 solver::ComplexVariable &solver::operator/(solver::ComplexVariable &CV1, solver::ComplexVariable &CV2) {
-    return CV1;
+    try {
+        ComplexVariable &x = *new ComplexVariable(CV1.real / CV2.real, CV1.imag / CV2.imag);
+        return x;
+    }
+    catch(std::exception e){
+        std::cout<<"divided by zero"<<std::endl;
+    }
 }
-
+/////////////not needed???
 /*solver::ComplexVariable &solver::operator/(std::complex<double> CDV1, std::complex<double> CDV2) {
     return (ComplexVariable &)(CDV1);
 }*/
 
 solver::ComplexVariable &solver::operator/(double DV1, solver::ComplexVariable &CV2) {
-    return CV2;
+    try {
+        ComplexVariable &x = *new ComplexVariable(DV1 * CV2.real, DV1 * CV2.imag);
+        return x;
+    }
+    catch(std::exception e){
+        std::cout<<"divided by zero"<<std::endl;
+    }
 }
 
 solver::ComplexVariable &solver::operator/(solver::ComplexVariable &CV1, double DV2) {
@@ -328,8 +345,6 @@ solver::ComplexVariable &solver::operator+(solver::ComplexVariable &CV1, std::co
 }
 
 
-
-
 double solver::solve(solver::RealVariable &RV) {
     double a = RV.get_a();
     double b = RV.get_b();
@@ -346,11 +361,10 @@ double solver::solve(solver::RealVariable &RV) {
         return 0;
     }
     if(a*c!=0){
-        if((b*b)-4*a*c<0){
+        if(pow(b,2)-4*a*c<0){
             throw std::invalid_argument(" There is no real solution");
         }
-        double s = sqrt(b*b-4*a*c);
-        results = (-b+s)/2*c;
+        results = (-b+(sqrt(pow(b,2)-4*a*c)))/2*c;
         return results;
     }
     throw std::invalid_argument(" There is no real solution");

@@ -6,21 +6,31 @@
 
 #IncludeRegexTransform: 
 
-/home/avi/CLionProjects/solver-a/Demo.cpp
+/home/nivtal9/CLionProjects/solver-a/Demo.cpp
 iostream
 -
 complex
 -
 solver.hpp
-/home/avi/CLionProjects/solver-a/solver.hpp
+/home/nivtal9/CLionProjects/solver-a/solver.hpp
 iostream
 -
 complex
 -
 solver.hpp
-/home/avi/CLionProjects/solver-a/solver.hpp
+/home/nivtal9/CLionProjects/solver-a/solver.hpp
 
-/home/avi/CLionProjects/solver-a/solver.hpp
+/home/nivtal9/CLionProjects/solver-a/solver.cpp
+solver.hpp
+/home/nivtal9/CLionProjects/solver-a/solver.hpp
+cmath
+-
+langinfo.h
+-
+math.h
+/home/nivtal9/CLionProjects/solver-a/math.h
+
+/home/nivtal9/CLionProjects/solver-a/solver.hpp
 iostream
 -
 complex

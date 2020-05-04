@@ -18,8 +18,9 @@
  using solver::solve, solver::RealVariable, solver::ComplexVariable;
 
  int main() {
-     RealVariable x;
 
+     RealVariable x;
+     cout << solve(10*x == 5) << endl; // 1/2
      cout << solve(2*x-4 == 10) << endl;  // 7
      cout << solve((x^2) == 16) << endl;   // 4 or -4
      try {

@@ -35,7 +35,7 @@ namespace solver {
         double get_c() const{
             return c;
         }
-        friend RealVariable operator*(RealVariable &RV1, RealVariable &RV2);
+        friend RealVariable &operator*(RealVariable &RV1, RealVariable &RV2);
         friend RealVariable& operator*(double DV1, RealVariable &RV2);
         friend RealVariable& operator*(RealVariable &RV1, double DV2);
 
@@ -59,18 +59,21 @@ namespace solver {
         friend RealVariable& operator-(double DV1, RealVariable &RV2);
         friend RealVariable& operator-(RealVariable &RV1, double DV2);
     };
-
     class ComplexVariable {
     private:
-        std::complex<double> y;
+        double real;
+        double imag;
+
     public:
-        ComplexVariable(std::complex<double> y){
-            (*this).y=y;
+        ComplexVariable(double real,double imag){
+            (*this).real=real;
+            (*this).imag=imag;
         }
         ComplexVariable(){
-            (*this).y=(0);
+            (*this).real=0;
+            (*this).imag=0;
         }
-        friend ComplexVariable operator*(ComplexVariable &CV1, ComplexVariable &CV2);
+        friend ComplexVariable &operator*(ComplexVariable &CV1, ComplexVariable &CV2);
         friend ComplexVariable& operator*(std::complex<double> CDV1, std::complex<double> CDV2);
         friend ComplexVariable& operator*(double DV1, ComplexVariable &CV2);
         friend ComplexVariable& operator*(ComplexVariable &CV1, double DV2);
