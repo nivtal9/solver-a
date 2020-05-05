@@ -61,17 +61,30 @@ namespace solver {
     };
     class ComplexVariable {
     private:
-        double real;
+        std::complex<double> real;
         double imag;
+        double pow_2;
 
     public:
-        ComplexVariable(double real,double imag){
+        ComplexVariable(std::complex<double> real,double imag,double pow_2){
             (*this).real=real;
             (*this).imag=imag;
+            (*this).pow_2=pow_2;
         }
         ComplexVariable(){
-            (*this).real=0;
-            (*this).imag=0;
+            (*this).real=0.0;
+            (*this).imag=1.0;
+            (*this).pow_2=0.0;
+        }
+        std::complex<double> get_real() const {
+		return real;
+	    }
+
+        double get_imag() const {
+		return imag;
+	    }
+        double get_pow() const {
+            return pow_2;
         }
         friend ComplexVariable &operator*(ComplexVariable &CV1, ComplexVariable &CV2);
         friend ComplexVariable& operator*(std::complex<double> CDV1, std::complex<double> CDV2);
