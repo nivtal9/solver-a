@@ -6,19 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/home/avi/CLionProjects/solver-a/Demo.cpp
-iostream
--
-complex
--
+/home/avi/CLionProjects/solver-a/solver.cpp
 solver.hpp
 /home/avi/CLionProjects/solver-a/solver.hpp
-iostream
+cmath
 -
-complex
+langinfo.h
 -
-solver.hpp
-/home/avi/CLionProjects/solver-a/solver.hpp
+math.h
+/home/avi/CLionProjects/solver-a/math.h
 
 /home/avi/CLionProjects/solver-a/solver.hpp
 iostream

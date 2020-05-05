@@ -329,7 +329,7 @@ solver::ComplexVariable &solver::operator^(solver::ComplexVariable &CV1, double 
         throw std::runtime_error("power can't be biger then 2");
     }
     else if(DV2==0){
-        ComplexVariable &x = *new ComplexVariable();
+        ComplexVariable &x = *new ComplexVariable(1,0,0);
         return x;
     }
     else if(DV2==1){
@@ -428,6 +428,12 @@ double solver::solve(solver::RealVariable &RV) {
     if(a*c!=0){
         if(pow(b,2)-4*a*c<0){
             throw std::invalid_argument(" There is no real solution");
+        }
+        if(a!=0 && b==0 && c!=0){
+            a=-a/c;
+            a=sqrt(a);
+            c=sqrt(c);
+            return results=a;
         }
         results = (-b+(sqrt(pow(b,2)-4*a*c)))/2*c;
         return results;
