@@ -6,41 +6,19 @@
 #include <cmath>
 #include <langinfo.h>
 #include "math.h"
-solver::RealVariable& solver::operator*(solver::RealVariable &RV1, solver::RealVariable &RV2) {
-   // RV1.a =RV1.a*RV2.a;
-   // RV1.b =RV1.b*RV2.b;
-   // RV1.c=RV1.c+RV2.c;
-   // return RV1;
-    RealVariable& x=  *new RealVariable(RV1.a * RV2.a, RV1.b * RV2.b, RV1.c + RV2.c);
-    return x;//wrong
-
-}
 
 solver::RealVariable &solver::operator*(double DV1, solver::RealVariable &RV2) {
     RealVariable &x=  *new RealVariable(DV1*RV2.a , DV1*RV2.b, DV1*RV2.c);
-   // RV2.a=DV1*RV2.a;
-  //  RV2.b=DV1*RV2.b;
-  //  RV2.c=DV1*RV2.c;
     return x;
 
 }
 
 solver::RealVariable &solver::operator*(solver::RealVariable &RV1, double DV2) {
-  //  RV1.a=DV2*RV1.a;
-   // RV1.b=DV2*RV1.b;
-   // RV1.c=DV2*RV1.c;
     RealVariable &x=  *new RealVariable(DV2*RV1.a, DV2*RV1.b,  DV2*RV1.c);
     return x;
 }
 
 solver::RealVariable &solver::operator+(solver::RealVariable &RV1, solver::RealVariable &RV2) {
-
-  //  RV1.b= RV1.b+RV2.b;
-  //  RV1.a =RV1.a+RV2.a;
-   // RV1.c =RV1.c+RV2.c;
-   // RV2.a=0;
-   // RV2.b=1;
-  //  RV2.c=0;
     RealVariable &x= *new RealVariable(RV1.a + RV2.a, RV1.b + RV2.b, RV1.c + RV2.c);
     return x;
 
@@ -48,34 +26,21 @@ solver::RealVariable &solver::operator+(solver::RealVariable &RV1, solver::RealV
 
 solver::RealVariable &solver::operator+(double DV1, solver::RealVariable &RV2) {
     RealVariable &x= *new RealVariable(DV1+RV2.a,  RV2.b,  RV2.c);
-    //RV2.a =DV1+RV2.a;
     return x;
 }
 
 solver::RealVariable &solver::operator+(solver::RealVariable &RV1, double DV2) {
     RealVariable &x= *new RealVariable(DV2+RV1.a,  RV1.b,  RV1.c);
-   // RV1.a =DV2+RV1.a;
     return x;
-}
-////////////not needed?
-solver::RealVariable &solver::operator/(solver::RealVariable &RV1, solver::RealVariable &RV2) {
-    RealVariable RV3;
-    RV3.a=RV1.a/RV2.a;
-    return RV3;
 }
 
 solver::RealVariable &solver::operator/(double DV1, solver::RealVariable &RV2) {
-  //  RV2.a=DV1/RV2.a;
-  //  RV2.b=DV1/RV2.b;
-  //  RV2.c=DV1/RV2.c;
+
     RealVariable &x= *new RealVariable(DV1/RV2.a,  DV1/RV2.b,  DV1/RV2.c);
     return x;
 }
 
 solver::RealVariable &solver::operator/(solver::RealVariable &RV1, double DV2) {
- //   RV1.a=RV1.a/DV2;
- //   RV1.b=RV1.b/DV2;
-  //  RV1.c=RV1.c/DV2;
   if(DV2==0){
       throw std::runtime_error("cant divide by 0");
   }
@@ -84,13 +49,10 @@ solver::RealVariable &solver::operator/(solver::RealVariable &RV1, double DV2) {
 }
 
 solver::RealVariable &solver::operator==(solver::RealVariable &RV1, solver::RealVariable &RV2) {
-    //////////////////////
     RealVariable &x1= *new RealVariable(RV1.a-RV2.a, RV1.b-RV2.b,  RV1.c-RV2.c);
     return x1;
 }
-//4+2x+x^2=20+2x
-//4+x^2=20
-//x^2=16
+
 
 solver::RealVariable &solver::operator==(double DV1, solver::RealVariable &RV2) {
     RealVariable &x1= *new RealVariable(RV2.a-DV1, RV2.b,  RV2.c);
@@ -100,26 +62,6 @@ solver::RealVariable &solver::operator==(double DV1, solver::RealVariable &RV2) 
 solver::RealVariable &solver::operator==(solver::RealVariable &RV1, double DV2) {
     RealVariable &x1= *new RealVariable(RV1.a-DV2, RV1.b,  RV1.c);
     return x1;
-}
-//////////////not needed?
-solver::RealVariable &solver::operator^(solver::RealVariable &RV1, solver::RealVariable &RV2) {
-    RealVariable &RV3= *new RealVariable();
-    RV3.a=RV1.a;
-    for (int i = 0; i < RV2.a; ++i) {
-        RV1.a= RV1.a*RV3.a;
-
-    }
-    return RV3;
-}
-////////
-solver::RealVariable &solver::operator^(double DV1, solver::RealVariable &RV2) {
-    RealVariable &RV3=*new RealVariable(RV2.a,RV2.b,RV2.c);
-    RV3.a=DV1;
-    for (int i = 0; i < RV2.a; ++i) {
-        RV3.a= RV3.a*DV1;
-
-    }
-    return RV3;
 }
 
 solver::RealVariable &solver::operator^(solver::RealVariable &RV1, double DV2) {
@@ -150,26 +92,17 @@ solver::RealVariable &solver::operator^(solver::RealVariable &RV1, double DV2) {
 }
 
 solver::RealVariable &solver::operator-(solver::RealVariable &RV1, solver::RealVariable &RV2) {
- //   RV1.a=RV1.a-RV2.a;
-  //  RV1.b=RV1.b-RV2.b;
-  //  RV1.c=RV1.c-RV2.c;
-  //  RV2.a=0;
-  //  RV2.b=1;
-   // RV2.c=0;
-
     RealVariable &x= *new RealVariable(RV1.a-RV2.a,  RV1.b-RV2.b, RV1.c-RV2.c);
     return x;
 
 }
 
 solver::RealVariable &solver::operator-(double DV1, solver::RealVariable &RV2) {
-    //RV2.a=DV1-RV2.a;
     RealVariable &x= *new RealVariable(DV1-RV2.a,  RV2.b, RV2.c);
     return x;
 }
 
 solver::RealVariable &solver::operator-(solver::RealVariable &RV1, double DV2) {
-    //RV1.a=RV1.a-DV2;
     RealVariable &x= *new RealVariable(RV1.a-DV2,  RV1.b, RV1.c);
     return x;
 }
@@ -190,17 +123,9 @@ solver::RealVariable &solver::operator-(solver::RealVariable &RV1, double DV2) {
 
 
 solver::ComplexVariable &solver::operator*(solver::ComplexVariable &CV1, solver::ComplexVariable &CV2) {
-   // ComplexVariable &x=*new ComplexVariable(CV1.real*CV2.real , CV1.imag*CV2.imag);
-  //  double temp=-1*(CV1.imag*CV2.imag);
-  //  ComplexVariable &x=*new ComplexVariable(CV1.real*CV2.real+temp , CV1.real*CV2.imag+CV1.imag*CV2.real);
     ComplexVariable &x=*new ComplexVariable(CV1.real*CV2.real , CV1.imag*CV2.imag ,CV1.pow_2*CV2.pow_2);
     return x;
 }
-////////not neded?
-/*solver::ComplexVariable &solver::operator*(std::complex<double> CDV1, std::complex<double> CDV2) {
-    return (ComplexVariable &) CDV1;
-}*/
-
 solver::ComplexVariable &solver::operator*(double DV1, solver::ComplexVariable &CV2) {
     ComplexVariable &x=*new ComplexVariable(DV1*CV2.real , DV1*CV2.imag, DV1*CV2.pow_2);
     return x;
@@ -210,46 +135,6 @@ solver::ComplexVariable &solver::operator*(solver::ComplexVariable &CV1, double 
     ComplexVariable &x=*new ComplexVariable(DV2*CV1.real , DV2*CV1.imag,DV2*CV1.pow_2);
 return x;
 }
-/*
-solver::ComplexVariable &solver::operator*(std::complex<double> CDV1, solver::ComplexVariable &CV2) {
-    ComplexVariable &x=*new ComplexVariable(CDV1.real()*CV2.real , CDV1.imag()*CV2.imag);
-    return x;
-}
-
-/*
-solver::ComplexVariable &solver::operator*(solver::ComplexVariable &CV1, std::complex<double> CDV2) {
-    ComplexVariable &x=*new ComplexVariable(CDV2.real()*CV1.real , CDV2.imag()*CV1.imag);
-    return x;
-}
-*/
-/*
-solver::ComplexVariable &solver::operator/(solver::ComplexVariable &CV1, solver::ComplexVariable &CV2) {
-    if(CV2.real!=0&&CV2.imag!=0) {
-        ComplexVariable &x = *new ComplexVariable(CV1.real / CV2.real, CV1.imag / CV2.imag);
-         return x;
-    }
-    else{
-        throw std::runtime_error("divided by zero");
-    }
-}
- */
-/////////////not needed???
-/*solver::ComplexVariable &solver::operator/(std::complex<double> CDV1, std::complex<double> CDV2) {
-    return (ComplexVariable &)(CDV1);
-}*/
-/*
-solver::ComplexVariable &solver::operator/(double DV1, solver::ComplexVariable &CV2) {
-
-
-        if(CV2.real!=0&&CV2.imag!=0) {
-            ComplexVariable &x = *new ComplexVariable(DV1 / CV2.real, DV1 / CV2.imag);
-            return x;
-        }
-        else{
-            throw std::runtime_error("divided by zero");
-        }
-}
-*/
 
 solver::ComplexVariable &solver::operator/(solver::ComplexVariable &CV1, double DV2) {
     if(DV2==0) {
@@ -260,37 +145,12 @@ solver::ComplexVariable &solver::operator/(solver::ComplexVariable &CV1, double 
         return x;
     }
 }
-/*
-solver::ComplexVariable &solver::operator/(std::complex<double> CDV1, solver::ComplexVariable &CV2) {
-    
-        if(CV2.real!=0&&CV2.imag!=0) {
-            ComplexVariable &x = *new ComplexVariable(CDV1.real() / CV2.real, CDV1.imag() / CV2.imag);
-            return x;
-        }
-        else{
-            throw std::runtime_error("divided by zero");
-        }
-}
 
-solver::ComplexVariable &solver::operator/(solver::ComplexVariable &CV1, std::complex<double> CDV2) {
-       if(CDV2.real()!=0&&CDV2.imag()!=0) {
-            ComplexVariable &x = *new ComplexVariable(CV1.real / CDV2.real(), CV1.imag / CDV2.imag());
-            return x;
-        }
-        else{
-            throw std::runtime_error("divided by zero");
-        }
-}
-*/
 
 solver::ComplexVariable &solver::operator==(solver::ComplexVariable &CV1, solver::ComplexVariable &CV2) {
      ComplexVariable &x = *new ComplexVariable(CV1.real - CV2.real, CV1.imag - CV2.imag, CV1.pow_2 - CV2.pow_2);
     return x;
 }
-
-/*solver::ComplexVariable &solver::operator==(std::complex<double> CDV1, std::complex<double> CDV2) {
-    return (ComplexVariable &)(CDV1);
-}*/
 
 solver::ComplexVariable &solver::operator==(double DV1, solver::ComplexVariable &CV2) {
     ComplexVariable &x = *new ComplexVariable(DV1 - CV2.real,  CV2.imag, CV2.pow_2);
@@ -301,35 +161,7 @@ solver::ComplexVariable &solver::operator==(solver::ComplexVariable &CV1, double
      ComplexVariable &x = *new ComplexVariable(CV1.real - DV2, CV1.imag ,CV1.pow_2);
     return x;
 }
-/*
-solver::ComplexVariable &solver::operator==(std::complex<double> CDV1, solver::ComplexVariable &CV2) {
-    ComplexVariable &x = *new ComplexVariable(CDV1.real() - CV2.real, CDV1.imag() - CV2.imag);
-    return x;
-}
 
-solver::ComplexVariable &solver::operator==(solver::ComplexVariable &CV1, std::complex<double> CDV2) {
-     ComplexVariable &x = *new ComplexVariable(CV1.real - CDV2.real(), CV1.imag - CDV2.imag());
-    return x;
-}
-*/
-/*
-solver::ComplexVariable &solver::operator^(solver::ComplexVariable &CV1, solver::ComplexVariable &CV2) {
-    std::complex<double> z(CV1.real, CV1.imag);
-    std::complex<double> z2(CV2.real, CV2.imag);
-    z=pow(z,z2);
-    ComplexVariable &x = *new ComplexVariable(z.real(),  z.imag());
-    return x;
-}
-*/
-/*solver::ComplexVariable &solver::operator^(std::complex<double> CDV1, std::complex<double> CDV2) {
-    return (ComplexVariable &)(CDV1);
-}*/
-//////////////////needed?
-/*
-solver::ComplexVariable &solver::operator^(double DV1, solver::ComplexVariable &CV2) {
-    return CV2;
-}
-*/
 solver::ComplexVariable &solver::operator^(solver::ComplexVariable &CV1, double DV2) {
     if(DV2>2){
         throw std::runtime_error("power can't be biger then 2");
@@ -347,23 +179,11 @@ solver::ComplexVariable &solver::operator^(solver::ComplexVariable &CV1, double 
     return x;
 
 }
-/*
-solver::ComplexVariable &solver::operator^(std::complex<double> CDV1, solver::ComplexVariable &CV2) {
-    return CV2;
-}
 
-solver::ComplexVariable &solver::operator^(solver::ComplexVariable &CV1, std::complex<double> CDV2) {
-    return CV1;
-}
-*/
 solver::ComplexVariable &solver::operator-(solver::ComplexVariable &CV1, solver::ComplexVariable &CV2) {
     ComplexVariable &x = *new ComplexVariable(CV1.real-CV2.real,  CV1.imag- CV2.imag, CV1.pow_2- CV2.pow_2);
     return x;
 }
-
-/*solver::ComplexVariable &solver::operator-(std::complex<double> CDV1, std::complex<double> CDV2) {
-    return (ComplexVariable &)(CDV1);
-}*/
 
 solver::ComplexVariable &solver::operator-(double DV1, solver::ComplexVariable &CV2) {
     ComplexVariable &x = *new ComplexVariable(DV1-CV2.real,  CV2.imag, CV2.pow_2);
@@ -390,9 +210,6 @@ solver::ComplexVariable &solver::operator+(solver::ComplexVariable &CV1, solver:
     return x;
 }
 
-/*solver::ComplexVariable &solver::operator+(std::complex<double> CDV1, std::complex<double> CDV2) {
-    return (ComplexVariable &)(CDV1);
-}*/
 
 solver::ComplexVariable &solver::operator+(double DV1, solver::ComplexVariable &CV2) {
     ComplexVariable &x = *new ComplexVariable(CV2.real+DV1,  CV2.imag, CV2.pow_2);
@@ -448,9 +265,8 @@ double solver::solve(solver::RealVariable &RV) {
         return 0;
     }
     throw std::invalid_argument(" There is no real solution");
-    //  return RV.ans;
 }
-//-14=2i
+
 std::complex<double> solver::solve(solver::ComplexVariable &CV1){
     std:: complex<double> x1=0;    float realPart=0;    float imaginaryPart =0;
 

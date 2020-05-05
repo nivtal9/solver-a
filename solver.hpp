@@ -35,7 +35,6 @@ namespace solver {
         double get_c() const{
             return c;
         }
-        friend RealVariable &operator*(RealVariable &RV1, RealVariable &RV2);
         friend RealVariable& operator*(double DV1, RealVariable &RV2);
         friend RealVariable& operator*(RealVariable &RV1, double DV2);
 
@@ -43,7 +42,6 @@ namespace solver {
         friend RealVariable& operator+(double DV1, RealVariable &RV2);
         friend RealVariable& operator+(RealVariable &RV1, double DV2);
 
-        friend RealVariable& operator/(RealVariable &RV1, RealVariable &RV2);
         friend RealVariable& operator/(double DV1, RealVariable &RV2);
         friend RealVariable& operator/(RealVariable &RV1, double DV2);
 
@@ -51,8 +49,6 @@ namespace solver {
         friend RealVariable& operator==(double DV1, RealVariable &RV2);
         friend RealVariable& operator==(RealVariable &RV1, double DV2);
 
-        friend RealVariable& operator^(RealVariable &RV1, RealVariable &RV2);
-        friend RealVariable& operator^(double DV1, RealVariable &RV2);
         friend RealVariable& operator^(RealVariable &RV1, double DV2);
 
         friend RealVariable& operator-(RealVariable &RV1, RealVariable &RV2);
@@ -87,42 +83,24 @@ namespace solver {
             return pow_2;
         }
         friend ComplexVariable &operator*(ComplexVariable &CV1, ComplexVariable &CV2);
-        friend ComplexVariable& operator*(std::complex<double> CDV1, std::complex<double> CDV2);
         friend ComplexVariable& operator*(double DV1, ComplexVariable &CV2);
         friend ComplexVariable& operator*(ComplexVariable &CV1, double DV2);
-        friend ComplexVariable& operator*(std::complex<double> CDV1, ComplexVariable &CV2);
-        friend ComplexVariable& operator*(ComplexVariable &CV1, std::complex<double> CDV2);
 
-        friend ComplexVariable& operator/(ComplexVariable &CV1, ComplexVariable &CV2);
-        friend ComplexVariable& operator/(std::complex<double> CDV1, std::complex<double> CDV2);
-        friend ComplexVariable& operator/(double DV1, ComplexVariable &CV2);
         friend ComplexVariable& operator/(ComplexVariable &CV1, double DV2);
-        friend ComplexVariable& operator/(std::complex<double> CDV1, ComplexVariable &CV2);
-        friend ComplexVariable& operator/(ComplexVariable &CV1, std::complex<double> CDV2);
 
         friend ComplexVariable& operator==(ComplexVariable &CV1, ComplexVariable &CV2);
-        friend ComplexVariable& operator==(std::complex<double> CDV1, std::complex<double> CDV2);
         friend ComplexVariable& operator==(double DV1, ComplexVariable &CV2);
         friend ComplexVariable& operator==(ComplexVariable &CV1, double DV2);
-        friend ComplexVariable& operator==(std::complex<double> CDV1, ComplexVariable &CV2);
-        friend ComplexVariable& operator==(ComplexVariable &CV1, std::complex<double> CDV2);
 
-        friend ComplexVariable& operator^(ComplexVariable &CV1, ComplexVariable &CV2);
-        friend ComplexVariable& operator^(std::complex<double> CDV1, std::complex<double> CDV2);
-        friend ComplexVariable& operator^(double DV1, ComplexVariable &CV2);
         friend ComplexVariable& operator^(ComplexVariable &CV1, double DV2);
-        friend ComplexVariable& operator^(std::complex<double> CDV1, ComplexVariable &CV2);
-        friend ComplexVariable &operator^(ComplexVariable &CV1, std::complex<double> CDV2);
 
         friend ComplexVariable &operator-(ComplexVariable &CV1, ComplexVariable &CV2);
-        friend ComplexVariable &operator-(std::complex<double> CDV1, std::complex<double> CDV2);
         friend ComplexVariable &operator-(double DV1, ComplexVariable &CV2);
         friend ComplexVariable &operator-(ComplexVariable &CV1, double DV2);
         friend ComplexVariable &operator-(std::complex<double> CDV1, ComplexVariable &CV2);
         friend ComplexVariable &operator-(ComplexVariable &CV1, std::complex<double> CDV2);
 
         friend ComplexVariable &operator+(ComplexVariable &CV1, ComplexVariable &CV2);
-        friend ComplexVariable &operator+(std::complex<double> CDV1, std::complex<double> CDV2);
         friend ComplexVariable &operator+(double DV1, ComplexVariable &CV2);
         friend ComplexVariable &operator+(ComplexVariable &CV1, double DV2);
         friend ComplexVariable &operator+(std::complex<double> CDV1, ComplexVariable &CV2);
