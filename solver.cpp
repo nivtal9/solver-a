@@ -76,6 +76,9 @@ solver::RealVariable &solver::operator/(solver::RealVariable &RV1, double DV2) {
  //   RV1.a=RV1.a/DV2;
  //   RV1.b=RV1.b/DV2;
   //  RV1.c=RV1.c/DV2;
+  if(DV2==0){
+      throw std::runtime_error("cant divide by 0");
+  }
     RealVariable &x= *new RealVariable(RV1.a/DV2,  RV1.b/DV2, RV1.c/DV2);
     return x;
 }
