@@ -120,6 +120,9 @@ solver::RealVariable &solver::operator^(double DV1, solver::RealVariable &RV2) {
 }
 
 solver::RealVariable &solver::operator^(solver::RealVariable &RV1, double DV2) {
+    if(DV2>2){
+        throw std::runtime_error("power can't be biger then 2");
+    }
     if(DV2==1){
         return RV1;
     }
@@ -437,6 +440,9 @@ double solver::solve(solver::RealVariable &RV) {
         }
         results = (-b+(sqrt(pow(b,2)-4*a*c)))/2*c;
         return results;
+    }
+    if(a==0 && b!=0 && c!=0){
+        return 0;
     }
     throw std::invalid_argument(" There is no real solution");
     //  return RV.ans;
